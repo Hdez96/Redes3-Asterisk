@@ -1,0 +1,116 @@
+[usuarios]
+
+;Llamadas dentro de la centralita
+
+exten => _21X,1,Set(MONITOR_FILENAME=${STRFTIME(${EPOCH},,%Y-%m-%d_%H:%M:%S)}-DE-${CALLERID(num)}-PARA-${EXTEN})
+exten => _21X,2,GoToIfTime(18:00-10:00|mon-fri||?${EXTEN},9) ;Restricción tiempo, horario no laborable
+exten => _21X,3,GoToIfTime(13:00-14:00|mon-fri||?${EXTEN},9) ;Restricción tiempo, horario de comida
+exten => _21X,4,GoToIfTime(|sat-sun||?${EXTEN},9) ;Restricción de tiempo, fin de semana/no laborable
+exten => _21X,5,GotoIf($[${LEN(${BLINDTRANSFER})} > 0]?6) ;Condición, si la llamada es una transferencia, entonces se acepta
+exten => _21X,6,MixMonitor(/etc/grabaciones/${MONITOR_FILENAME}.wav) ;Comienza grabación.
+exten => _21X,7,Dial(SIP/${EXTEN},25,tT)
+exten => 8,Hangup()
+exten => _21X,9,Playback(silence/1&ss-noservice)
+same => 10,Hangup()
+
+exten => _22X,1,Set(MONITOR_FILENAME=${STRFTIME(${EPOCH},,%Y-%m-%d_%H:%M:%S)}-DE-${CALLERID(num)}-PARA-${EXTEN})
+exten => _22X,2,GoToIfTime(18:00-10:00|mon-fri||?${EXTEN},8)
+exten => _22X,3,GoToIfTime(13:00-14:00|mon-fri||?${EXTEN},8)
+exten => _22X,4,GoToIfTime(|sat-sun||?${EXTEN},8)
+exten => _22X,5,Dial(SIP/${EXTEN},25,tT)
+exten => _22X,6,MixMonitor(/etc/grabaciones/${MONITOR_FILENAME}.wav)
+exten => 7,Hangup()
+exten => _22X,8,Playback(silence/1&ss-noservice)
+same => 9,Hangup()
+
+exten => _23X,1,Set(MONITOR_FILENAME=${STRFTIME(${EPOCH},,%Y-%m-%d_%H:%M:%S)}-DE-${CALLERID(num)}-PARA-${EXTEN})
+exten => _23X,2,GoToIfTime(18:00-10:00|mon-fri||?${EXTEN},8)
+exten => _23X,3,GoToIfTime(13:00-14:00|mon-fri||?${EXTEN},8)
+exten => _23X,4,GoToIfTime(|sat-sun||?${EXTEN},8)
+exten => _23X,5,Dial(SIP/${EXTEN},25,tT)
+exten => _23X,6,MixMonitor(/etc/grabaciones/${MONITOR_FILENAME}.wav)
+exten => 7,Hangup()
+exten => _23X,8,Playback(silence/1&ss-noservice)
+same => 9,Hangup()
+
+exten => _24X,1,Set(MONITOR_FILENAME=${STRFTIME(${EPOCH},,%Y-%m-%d_%H:%M:%S)}-DE-${CALLERID(num)}-PARA-${EXTEN})
+exten => _24X,2,GoToIfTime(18:00-10:00|mon-fri||?${EXTEN},8)
+exten => _24X,3,GoToIfTime(13:00-14:00|mon-fri||?${EXTEN},8)
+exten => _24X,4,GoToIfTime(|sat-sun||?${EXTEN},8)
+exten => _24X,5,Dial(SIP/${EXTEN},25,tT)
+exten => _24X,6,MixMonitor(/etc/grabaciones/${MONITOR_FILENAME}.wav)
+exten => 7,Hangup()
+exten => _24X,8,Playback(silence/1&ss-noservice)
+same => 9,Hangup()
+
+;Salientes hacia el Asterisk_A
+
+exten => _0110X,1,Dial(SIP/${EXTEN:2})
+same => n,Wait(1)
+same => n,Dial(SIP/Trunk_Asterisk_A/${EXTEN:2})
+same => n,Hangup()
+
+exten => _0111X,1,Dial(SIP/${EXTEN:2})
+same => n,Wait(1)
+same => n,Dial(SIP/Trunk_Asterisk_A/${EXTEN:2})
+same => n,Hangup()
+
+exten => _0112X,1,Dial(SIP/${EXTEN:2})
+same => n,Wait(1)
+same => n,Dial(SIP/Trunk_Asterisk_A/${EXTEN:2})
+same => n,Hangup()
+
+exten => _0112X,1,Dial(SIP/${EXTEN:2})
+same => n,Wait(1)
+same => n,Dial(SIP/Trunk_Asterisk_A/${EXTEN:2})
+same => n,Hangup()
+
+exten => _0114X,1,Dial(SIP/${EXTEN:2})
+same => n,Wait(1)
+same => n,Dial(SIP/Trunk_Asterisk_A/${EXTEN:2})
+same => n,Hangup()
+
+;Salientes hacia el Asterisk_C
+
+exten => _0333X,1,Dial(SIP/${EXTEN:2})
+same => n,Wait(1)
+same => n,Dial(SIP/Trunk_Asterisk_C/${EXTEN:2})
+same => n,Hangup()
+
+exten => _0334X,1,Dial(SIP/${EXTEN:2})
+same => n,Wait(1)
+same => n,Dial(SIP/Trunk_Asterisk_C/${EXTEN:2})
+same => n,Hangup()
+
+;Entrantes desde el Asterisk_A
+
+[Entrantes_Trunk_Asterisk_A]
+
+exten => _21X,1,Dial(SIP/${EXTEN})
+same => n,Hangup()
+
+exten => _22X,1,Dial(SIP/${EXTEN})
+same => n,Hangup()
+
+exten => _23X,1,Dial(SIP/${EXTEN})
+same => n,Hangup()
+
+exten => _24X,1,Dial(SIP/${EXTEN})
+same => n,Hangup()
+
+
+;Entrantes desde el Asterisk_C
+
+[Entrantes_Trunk_Asterisk_C]
+
+exten => _21X,1,Dial(SIP/${EXTEN})
+same => n,Hangup()
+
+exten => _22X,1,Dial(SIP/${EXTEN})
+same => n,Hangup()
+
+exten => _23X,1,Dial(SIP/${EXTEN})
+same => n,Hangup()
+
+exten => _24X,1,Dial(SIP/${EXTEN})
+same => n,Hangup()

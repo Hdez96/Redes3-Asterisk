@@ -1,0 +1,177 @@
+[general]
+
+allowguest=no
+srvlookup=no
+externaddr=
+media_address=
+localnet=/255.255.240.0
+tcpenable=no
+canreinvite = no
+dtmfmode=auto
+bindport=5060
+context=public
+transport=udp
+qualify=yes
+
+;Llamadas hacia y desde el Asterisk_A
+
+[Trunk_Asterisk_A]
+type=peer
+host=
+disallow=all
+allow=alaw
+context=Entrantes_Trunk_Asterisk_A
+nat=yes
+
+;Llamadas hacia y desde el Asterisk_C
+
+[Trunk_Asterisk_C]
+type=peer
+host=
+disallow=all
+allow=alaw
+context=Entrantes_Trunk_Asterisk_C
+nat=yes
+
+[210]
+type=friend
+username=210
+callerid="David Carmona"
+secret=Vq*9HEG^
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[220]
+type=friend
+username=220
+callerid="Maria Davalos"
+secret=$Scd2zyc
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[231]
+type=friend
+username=231
+callerid="Jaime Espinosa"
+secret=_72rCStw
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[232]
+type=friend
+username=232
+callerid="Jessica Flores"
+secret=xq@SC3xs
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[233]
+type=friend
+username=233
+callerid="Erik Garfia"
+secret=^EaVRf2L
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[234]
+type=friend
+username=234
+callerid="Oscar Guerrero"
+secret=Z?BL6%kx
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[235]
+type=friend
+username=235
+callerid="Samantha Hernandez"
+secret=SLb+j4%p
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[241]
+type=friend
+username=241
+callerid="Brandon Hernandez"
+secret=e?Z3qrxc
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[242]
+type=friend
+username=242
+callerid="Carlos Hernandez"
+secret=_B?A3Ccr
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[243]
+type=friend
+username=243
+callerid="Daniel Hidalgo"
+secret=4c%XFr6z
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[244]
+type=friend
+username=244
+callerid="Daniel Leon"
+secret=5cXSY^z8
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[245]
+type=friend
+username=245
+callerid="David Lopez"
+secret=^#VkEm7+
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[246]
+type=friend
+username=246
+callerid="Humberto Lopez"
+secret=VMV4s%VF
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes

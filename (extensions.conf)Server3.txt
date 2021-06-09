@@ -1,0 +1,93 @@
+[usuarios]
+
+;Llamadas dentro de la centralita
+
+exten => _33X,1,Set(MONITOR_FILENAME=${STRFTIME(${EPOCH},,%Y-%m-%d_%H:%M:%S)}-DE-${CALLERID(num)}-PARA-${EXTEN}) ;Variable/Mix
+exten => _33X,2,GoToIfTime(20:00-10:00|mon-fri||?${EXTEN},8) ;Restricción tiempo, horario no laborable
+exten => _33X,3,GoToIfTime(13:00-14:00|mon-fri||?${EXTEN},8) ;Restricción tiempo, horario de comida
+exten => _33X,4,GoToIfTime(|sat-sun||?${EXTEN},8) ;Restricción de tiempo, fin de semana/no laborable
+exten => _33X,5,MixMonitor(/etc/grabaciones/${MONITOR_FILENAME}.wav)
+exten => _33X,6,Dial(SIP/${EXTEN},25,tT)
+exten => 7,Hangup()
+exten => _33X,8,Playback(silence/1&ss-noservice)
+same => 9,Hangup()
+
+exten => _34X,1,Set(MONITOR_FILENAME=${STRFTIME(${EPOCH},,%Y-%m-%d_%H:%M:%S)}-DE-${CALLERID(num)}-PARA-${EXTEN}) ;Variable/Mix
+exten => _34X,2,GoToIfTime(20:00-10:00|mon-fri||?${EXTEN},8) ;Restricción tiempo, horario no laborable
+exten => _34X,3,GoToIfTime(13:00-14:00|mon-fri||?${EXTEN},8) ;Restricción tiempo, horario de comida
+exten => _34X,4,GoToIfTime(|sat-sun||?${EXTEN},8) ;Restricción de tiempo, fin de semana/no laborable
+exten => _34X,5,MixMonitor(/etc/grabaciones/${MONITOR_FILENAME}.wav)
+exten => _34X,6,Dial(SIP/${EXTEN},25,tT)
+exten => 7,Hangup()
+exten => _34X,8,Playback(silence/1&ss-noservice)
+same => 9,Hangup()
+
+;Salientes hacia el Asterisk_A
+
+exten => _0110X,1,Dial(SIP/${EXTEN:2})
+same => n,Wait(1)
+same => n,Dial(SIP/Trunk_Asterisk_A/${EXTEN:2})
+same => n,Hangup()
+
+exten => _0111X,1,Dial(SIP/${EXTEN:2})
+same => n,Wait(1)
+same => n,Dial(SIP/Trunk_Asterisk_A/${EXTEN:2})
+same => n,Hangup()
+
+exten => _0112X,1,Dial(SIP/${EXTEN:2})
+same => n,Wait(1)
+same => n,Dial(SIP/Trunk_Asterisk_A/${EXTEN:2})
+same => n,Hangup()
+
+exten => _0112X,1,Dial(SIP/${EXTEN:2})
+same => n,Wait(1)
+same => n,Dial(SIP/Trunk_Asterisk_A/${EXTEN:2})
+same => n,Hangup()
+
+exten => _0114X,1,Dial(SIP/${EXTEN:2})
+same => n,Wait(1)
+same => n,Dial(SIP/Trunk_Asterisk_A/${EXTEN:2})
+same => n,Hangup()
+
+;Salientes hacia el Asterisk_B
+
+exten => _0221X,1,Dial(SIP/${EXTEN:2})
+same => n,Wait(1)
+same => n,Dial(SIP/Trunk_Asterisk_B/${EXTEN:2})
+same => n,Hangup()
+
+exten => _0222X,1,Dial(SIP/${EXTEN:2})
+same => n,Wait(1)
+same => n,Dial(SIP/Trunk_Asterisk_B/${EXTEN:2})
+same => n,Hangup()
+
+exten => _0223X,1,Dial(SIP/${EXTEN:2})
+same => n,Wait(1)
+same => n,Dial(SIP/Trunk_Asterisk_B/${EXTEN:2})
+same => n,Hangup()
+
+exten => _0224X,1,Dial(SIP/${EXTEN:2})
+same => n,Wait(1)
+same => n,Dial(SIP/Trunk_Asterisk_B/${EXTEN:2})
+same => n,Hangup()
+
+;Entrantes desde el Asterisk_A
+
+[Entrantes_Trunk_Asterisk_A]
+
+exten => _33X,1,Dial(SIP/${EXTEN})
+same => n,Hangup()
+
+exten => _34X,1,Dial(SIP/${EXTEN})
+same => n,Hangup()
+
+
+;Entrantes desde el Asterisk_B
+
+[Entrantes_Trunk_Asterisk_B]
+
+exten => _33X,1,Dial(SIP/${EXTEN})
+same => n,Hangup()
+
+exten => _34X,1,Dial(SIP/${EXTEN})
+same => n,Hangup()

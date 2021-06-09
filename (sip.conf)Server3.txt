@@ -1,0 +1,177 @@
+[general]
+
+allowguest=no
+srvlookup=no
+externaddr=
+media_address=
+localnet=/255.255.240.0
+tcpenable=no
+canreinvite = no
+dtmfmode=auto
+bindport=5060
+context=public
+transport=udp
+qualify=yes
+
+;Llamadas hacia y desde el Asterisk_A
+
+[Trunk_Asterisk_A]
+type=peer
+host=
+disallow=all
+allow=alaw
+context=Entrantes_Trunk_Asterisk_A
+nat=yes
+
+;Llamadas hacia y desde el Asterisk_B
+
+[Trunk_Asterisk_B]
+type=peer
+host=
+disallow=all
+allow=alaw
+context=Entrantes_Trunk_Asterisk_B
+nat=yes
+
+[331]
+type=friend
+username=331
+callerid="Edgar Nava"
+secret=Cn@63#kS
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[332]
+type=friend
+username=332
+callerid="Luis Paramo"
+secret=f?T_4k=f
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[333]
+type=friend
+username=333
+callerid="Fernando Paz"
+secret=Y!qA_2vx
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[334]
+type=friend
+username=334
+callerid="Hector Perez"
+secret=b8Bb!b&k
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[335]
+type=friend
+username=335
+callerid="Angel Piñon"
+secret=V2Un^L?X
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[336]
+type=friend
+username=336
+callerid="Silvestre Ramirez"
+secret=g8@nBU^v
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[337]
+type=friend
+username=337
+callerid="Leonardo Rodriguez"
+secret==wwM+9y6
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[341]
+type=friend
+username=341
+callerid="David Velazquez"
+secret=%AZs2XN!
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[342]
+type=friend
+username=342
+callerid="Carlos Villena"
+secret=D!h_2jN7
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[343]
+type=friend
+username=343
+callerid="Alvaro Zuñiga"
+secret=aUEJ_n9!
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[344]
+type=friend
+username=344
+callerid="Carlos Nambo"
+secret=EdD%5TkF
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[345]
+type=friend
+username=345
+callerid="Edgar Cabañas"
+secret=%e-Y+c7+
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
+
+[346]
+type=friend
+username=346
+callerid="Juan Navarro"
+secret=Kb5a*UFT
+disallow=all
+allow=alaw
+context=usuarios
+host=dynamic
+nat=yes
